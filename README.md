@@ -3,14 +3,14 @@ id: child-dataset
 name: CHILD Dataset
 brief-description: Dataset for experiments within the CHILD Pilot
 type: Dataset
-release-date: TBD
-release-number: TBD
+release-date: 
+release-number: 
 work-package: 
 - WP1
 - WP4
 pilot:
 - CHILD
-licence: TBD
+licence: 
 related-component:
 - led
 links:
