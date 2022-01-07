@@ -22,5 +22,5 @@ credits:
 
 Generate list of sources from exemplary LED entities
 ```
-
+fx -q queries/sources.sparql -l led-SNAPSHOT.nt -o sources.csv -f CSV
 ```
