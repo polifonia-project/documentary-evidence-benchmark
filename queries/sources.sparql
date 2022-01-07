@@ -1,0 +1,61 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx:   <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz:  <http://sparql.xyz/facade-x/data/>
+PREFIX led:  <http://led.kmi.open.ac.uk/term/>
+PREFIX dc: <http://purl.org/dc/terms/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+SELECT ?source
+WHERE {
+
+	SERVICE <x-sparql-anything:> {
+		fx:properties fx:location "./CHILD exemplar sources.xlsx" .
+		[] a fx:root ; ?row [ ?cell ?expstr ].
+		filter ( fx:after(?row, rdf:_2 ) ) . # skip the first two rows
+		filter ( fx:after(?cell, rdf:_2 ) ) . # any cell after the second
+		#BIND ( fx:entity( fx:String.trim(?expstr) ) as ?exp ) .
+		BIND ( replace( ?expstr, "https://led.kmi.open.ac.uk/entity/lexp/", "http://data.open.ac.uk/led/lexp/" ) as ?expuri ) .
+		BIND ( fx:entity( fx:String.trim(?expuri) ) as ?exp ) .
+	} .
+#	
+	{ ?exp led:is_reported_in/dc:isPartOf ?source }
+	UNION
+	{ ?exp led:is_reported_in ?source }
+	
+
+#		  [] led:in_collection ?p
+#		  [] dc:isPartOf ?p
+
+
+#FILTER(!BOUND(?source))
+# 
+
+
+#		?exp ?p []
+#		<http://data.open.ac.uk/led/source/c76eef560d35756730c826f51c43389c/excerpt/446f574c5290cf166bf824f3bcc150c1> ?p ?o .
+#		?s ?p1 <http://data.open.ac.uk/led/source/c76eef560d35756730c826f51c43389c/excerpt/446f574c5290cf166bf824f3bcc150c1> 
+		
+	}
+#	order by xsd:int(?row)
+	
+
+# https://led.kmi.open.ac.uk/entity/lexp/1530175082343
+# https://led.kmi.open.ac.uk/entity/lexp/1434637762881
+# https://led.kmi.open.ac.uk/entity/lexp/1402131399589
+#  https://led.kmi.open.ac.uk/entity/lexp/1462050137013
+# https://led.kmi.open.ac.uk/entity/lexp/1449242879363
+# https://led.kmi.open.ac.uk/entity/lexp/1401810883944
+# https://led.kmi.open.ac.uk/entity/lexp/1426844423738
+# https://led.kmi.open.ac.uk/entity/lexp/1558351681445
+# https://led.kmi.open.ac.uk/entity/lexp/1436610229204
+# https://led.kmi.open.ac.uk/entity/lexp/1435839378719
+#  https://led.kmi.open.ac.uk/entity/lexp/1444079072687
+# https://led.kmi.open.ac.uk/entity/lexp/1432295361459
+# https://led.kmi.open.ac.uk/entity/lexp/1437644129613
+# https://led.kmi.open.ac.uk/entity/lexp/1426851801016
+# https://led.kmi.open.ac.uk/entity/lexp/1448997318962
+# https://led.kmi.open.ac.uk/entity/lexp/1426676012967
+# https://led.kmi.open.ac.uk/entity/lexp/1425902082920
+
