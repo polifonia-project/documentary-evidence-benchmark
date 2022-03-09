@@ -13,6 +13,7 @@ pilot:
 licence: 
 related-component:
 - led
+- sparql-anything
 links:
 - https://github.com/polifonia-project/child-dataset
 credits:
