@@ -1,0 +1,68 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx:   <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz:  <http://sparql.xyz/facade-x/data/>
+PREFIX led:  <http://led.kmi.open.ac.uk/term/>
+PREFIX dc: <http://purl.org/dc/terms/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix c4dm: <http://purl.org/NET/c4dm/event.owl#>
+prefix mo: <http://purl.org/ontology/mo/>
+
+
+SELECT 
+	?file ?exp ?excerpt ?text ?time ?place ?listening_to
+	(GROUP_CONCAT(DISTINCT ?environments) AS ?environment) 
+	(GROUP_CONCAT(DISTINCT ?listeners) AS ?listener) 
+	(GROUP_CONCAT(DISTINCT ?listeners_name) AS ?listener_label) 
+ 	(GROUP_CONCAT(DISTINCT ?types) AS ?type) 
+	(GROUP_CONCAT(DISTINCT ?instruments) AS ?instrument) 
+	(GROUP_CONCAT(DISTINCT ?genres) AS ?genre) 
+WHERE {
+	#         exp
+	values ( ?_source ?_file ) {
+		( <http://data.open.ac.uk/led/source/Letters+on+Italy;+illustrated+by+engravings/1517842711096> "lettersonitalyil00cast_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/The+Diary+of+an+invalid,+being+the+journal+of+a+tour...+in+Portugal,+Italy,+Switzerland+and+France,+1817-1819/1518777047737> "b22022235_0002_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Music+and+manners;+personal+reminiscences+and+sketches+of+character/1444077559572> "musicandmanners005622mbp_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Musical+Memories/1432295196698> "musicalmemories017451mbp_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/The+Life+and+Letters+of+Frances+Baroness+Bunsen/vol2/1375783186722> "lifeandlettersf02haregoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/The+Autobiography+and+Correspondance+of+Mary+Granville,+Mrs.+Delany,+Volume+II/1434458449577> "autobiographyand002432mbp_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Journal,+1804/1530174836760> "cu31924028002743_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Musical+Reminiscences+Past+and+Present/1465384474868> "musicalreminisc01spargoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Music+and+Friends:+Or,+Pleasant+Recollections+of+a+Dilettante,+Volume+2/1433878557153> "musicandfriends00gardgoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Travels+in+the+two+Sicilies+Volume+1/1509031562556> "travelsintwosici01swin_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/A+Memoir+of+Baron+Bunsen+Volume+II/1433945217073> "E14073_Memoirs_of_Baron_Bunsen_vol_II_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Friends+and+Memories/1449159325057> "friendsmemories00whituoft_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Musings+%26+memories+of+a+musician/1452196418275> "cu31924022171585_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Italy+Volume+1/1513867967408> "italymorgan02morgiala_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/A+Classical+tour+through+Italy+and+Sicily/1517328162381> "aclassicaltourt00hoargoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Reminiscences+of+the+Opera/1438607277392> "cu31924022334563_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Music+and+Friends:+Or,+Pleasant+Recollections+of+a+Dilettante,+Volume+3/1432981483769> "musicandfriends00gardgoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Memorials+of+Frederick+Arthur+Gore+Ouseley,+baronet,+M.A.,+doctor+and+professor+of+music+in+the+University+of+Oxford;+preceptor+and+canon+residentary+in+the+cathedral+church+of+Hereford:+founder+of+St+Michael's+Tenbury,+and+first+incumbent+of+that+church/1436609453105> "cu31924022435766_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Thirty+Years+of+Musical+Life+in+London,+1870-1900/1438157240868> "thirtyyearsofmus00klei_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Memoirs+of+Myself,+begun+many+Years+since,+but+never,+I+fear,+to+be+completed/1558348364389> "memoirsjournala19moorgoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/The+Life+and+Letters+of+Frances+Baroness+Bunsen> "lifeandlettersf02haregoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/A+Memoir+of+Baron+Bunsen+Volume+1/1433762313415> "E14072_Memoirs_of_Baron_Bunsen_vol_I_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Rhymes+and+Recollections+of+a+Hand-Loom+Weaver,+2nd+edition/1524242317478> "rhymesandrecoll01thomgoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Letter+from+Horace+Walpole+to+Earl+Harcourt,+3+June+1782/1534783264240> "lettershoracewa05toyngoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/My+Musical+Life/1437637141159> "mymusicallife00haweuoft_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Musical+letters+from+abroad/1448037132026> "musicallettersf00unkngoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Letter+from+Anna+Seward+to+Mrs+Cotton,+27+October+1785/1535625131990> "lettersannasewa09consgoog_djvu.txt" )
+		( <http://data.open.ac.uk/led/source/Recollections+of+an+old+musician/1448996608059> "recollectionsofo00ryanuoft_djvu.txt" )
+	}
+	
+	?exp led:is_reported_in ?excerpt ; 
+		dc:subject ?listening_to .
+	?excerpt dc:isPartOf ?_source ;
+		rdf:value ?text__ .
+	optional { ?exp led:has_environment ?env . BIND (replace(STR(?env), "http://led.kmi.open.ac.uk/term/ListeningEnvironment.","") AS ?environments ) }
+	optional { ?exp c4dm:time ?t . BIND ( replace(STR(?t), "http://data.open.ac.uk/time/edtf/", "") AS ?time ) }
+	optional { ?exp c4dm:place ?place } .
+	optional { ?listening_to mo:instrument ?instruments } .
+	optional { ?listening_to mo:listener ?listeners . ?listeners rdfs:label ?listeners_name} .
+	optional { ?listening_to mo:genre ?genres } .
+	optional { ?listening_to a ?listening_types . BIND (replace(STR(?listening_types), "http://purl.org/ontology/mo/","") AS ?types ) }
+	BIND ( fx:String.removeTags(?text__) AS ?text )
+	BIND ( ?_file AS ?file )
+}
+group by ?file ?exp ?excerpt ?text ?listener ?time ?place ?listening_to 

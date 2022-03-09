@@ -7,9 +7,8 @@ PREFIX dc: <http://purl.org/dc/terms/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix schema: <http://schema.org/>
 
-SELECT DISTINCT ?source ?file (SAMPLE(?titles ) as ?title) ?author (SAMPLE(?author_names) as ?author_name) ?time
-WHERE {
-
+SELECT ?file ?led_entity WHERE {
+	# 
 	SERVICE <x-sparql-anything:> {
 		fx:properties fx:location "./CHILD exemplar sources.xlsx" .
 		[] a fx:root ; 
@@ -17,17 +16,10 @@ WHERE {
 		filter ( fx:after(?row, rdf:_2 ) ) . # skip the first two rows
 		filter ( ?link != "" ) . # ignore sources without reusable text
 		filter ( fx:after(?cell, rdf:_3 ) ) . # any cell after the second
-		#BIND ( fx:entity( fx:String.trim(?expstr) ) as ?exp ) .
 		BIND ( replace( ?expstr, "https://led.kmi.open.ac.uk/entity/lexp/", "http://data.open.ac.uk/led/lexp/" ) as ?expuri ) .
 		BIND ( replace( ?link, ".*/","") as ?file ) .
-		BIND ( fx:entity( fx:String.trim(?expuri) ) as ?exp ) .
+		BIND ( fx:entity( fx:String.trim(?expuri) ) as ?led_entity ) .
+		FILTER (?expstr != "" )
 	} .
-#	
-	{ ?exp led:is_reported_in/dc:isPartOf ?source . optional { ?source dc:issued ?timeExp . BIND ( replace( STR(?timeExp), ".*/","") as ?time ) } . optional { ?source dc:title ?titles } . optional { ?source schema:author ?author . ?author rdfs:label ?author_names } }
-	UNION
-	{ ?exp led:is_reported_in ?source . optional { ?source dc:issued ?timeExp . BIND ( replace( STR(?timeExp), ".*/","") as ?time ) } . optional { ?source dc:title ?titles } . optional { ?source schema:author ?author . ?author rdfs:label ?author_names }  . FILTER ( ! contains( ?source, "/excerpt/" ) ) }
-	
-	}
-group by ?source ?file ?author ?time
 
-
+}
