@@ -1,0 +1,26 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx:   <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz:  <http://sparql.xyz/facade-x/data/>
+PREFIX led:  <http://led.kmi.open.ac.uk/term/>
+PREFIX dc: <http://purl.org/dc/terms/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix c4dm: <http://purl.org/NET/c4dm/event.owl#>
+prefix mo: <http://purl.org/ontology/mo/>
+prefix apf: <http://jena.apache.org/ARQ/property#>
+
+select ?places ?items
+where {
+	
+		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+			[] a fx:root; fx:anySlot [ xyz:place ?places ] .
+
+		#	BIND(?items as ?item).
+		#	BIND ("Number of places" as ?title)
+		}
+			?items apf:strSplit (?places ' ') .	
+} 
+
+
+# place,listening_to,environment,listener,listener_label,type,instrument,genre

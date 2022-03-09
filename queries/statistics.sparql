@@ -1,0 +1,64 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fx:   <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz:  <http://sparql.xyz/facade-x/data/>
+PREFIX led:  <http://led.kmi.open.ac.uk/term/>
+PREFIX dc: <http://purl.org/dc/terms/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix schema: <http://schema.org/>
+prefix c4dm: <http://purl.org/NET/c4dm/event.owl#>
+prefix mo: <http://purl.org/ontology/mo/>
+prefix apf: <http://jena.apache.org/ARQ/property#>
+
+select ?title (count(distinct ?item ) as ?count)
+where {
+	{
+		service <x-sparql-anything:data/child.csv> {
+			[] a fx:root; ?item [] .
+			BIND ("experiences relevant to childhood" as ?title)
+		}
+	} UNION {
+		service <x-sparql-anything:data/experiences.csv> {
+			[] a fx:root; ?item [] .
+			BIND ("experiences" as ?title)
+		}
+	} UNION {
+		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+			[] a fx:root; fx:anySlot [ xyz:file ?item ].
+			BIND ("sources" as ?title)
+		}
+	} UNION {
+		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+			[] a fx:root; fx:anySlot [ xyz:place ?places ] .
+			BIND ("places" as ?title)
+		}
+		?item apf:strSplit (?places ' ') .
+	} UNION {
+   		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+   			[] a fx:root; fx:anySlot [ xyz:listening_to ?pieces ] .
+   			BIND ("performances/pieces" as ?title)
+   		}
+		?item apf:strSplit (?pieces ' ') .
+   	} UNION {
+   		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+   			[] a fx:root; fx:anySlot [ xyz:listener ?listeners ] .
+   			BIND ("listeners" as ?title) 
+   		}
+		?item apf:strSplit (?listeners ' ') .
+   	} UNION {
+   		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+   			[] a fx:root; fx:anySlot [ xyz:instrument ?instruments ] .
+   			BIND ("instruments" as ?title)
+   		}
+		?item apf:strSplit (?instruments ' ') .
+   	} UNION {
+   		service <x-sparql-anything:data/experiences.csv,csv.headers=true> {
+   			[] a fx:root; fx:anySlot [ xyz:genre ?genres ] .
+   			BIND ("genres" as ?title)
+   		}
+		?item apf:strSplit (?genres ' ') .
+	}
+} group by ?title
+
+
+# place,listening_to,environment,listener,listener_label,type,instrument,genre

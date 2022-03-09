@@ -76,4 +76,15 @@ fx -q queries/child.sparql -l led-SNAPSHOT.nt -o data/child.csv -f CSV
 ```
 
 
+### Statistics
 
+|title|count|
+|-----|-----|
+|sources|25|
+|places|277|
+|genres|100|
+|listeners|194|
+|instruments|64|
+|experiences relevant to childhood|40|
+|experiences|1248|
+|performances/pieces|1121|
