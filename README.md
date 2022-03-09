@@ -51,7 +51,7 @@ Input: `sources.csv` (`source,file,title,author,author_name,time` both the textu
 
 Target: for each `file`, find paragraphs that match (or overlap) with the ones in `experience (text)`  (the other columns except `file` should be ignored and not used by the approach)
 
-### Task 2: retrieve documentary evidence relevant to Childhood
+### Task 2: retrieve documentary evidence relevant to childhood
 
 This task is equivalent to Task 1, except that the output should match the list of experiences in `child.csv`
 
