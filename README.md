@@ -19,7 +19,7 @@ links:
 credits:
 - https://github.com/enridaga
 ---
-# Benchmarking the extraction of documentary evidence
+# Documentary evidence benchmark
 
 This project provides the benchmark for the extraction of documentary evidence, taking the Listening Experience Database (LED) as a reference.
 
@@ -55,13 +55,21 @@ Target: for each `file`, find paragraphs that match (or overlap) with the ones i
 
 This task is equivalent to Task 1, except that the output should match the list of experiences in `child.csv`
 
-### Task 3: retrieve documentary evidence extended metadata
+### Task 3: populate documentary evidence entities metadata
 
 This task operates on the expected output from the previous ones. Given a list of texts and related excerpts, populate the metadata describing the listening experience.
 
 Input: `sources.csv` (all columns), `experiences.csv` (`file,exp,excerpt,text`)
 
-Target: automatically derive any of the other columns in `experiences.csv`: `time,place,listening_to,environment,listener,listener_label,type,instrument,genre`
+Target: automatically derive columns in `experiences.csv`: `place,listening_to,environment,listener,listener_label,type,instrument,genre`
+
+### Task 4: time-indexing of documentary evidence
+
+This task operates on the expected output from the previous ones. Given a list of texts and related excerpts, populate the metadata describing the listening experience.
+
+Input: `sources.csv` (all columns), `experiences.csv` (`file,exp,excerpt,text`)
+
+Target: automatically derive columns in `experiences.csv`: `time`
 
 
 ## Benchmark construction process
