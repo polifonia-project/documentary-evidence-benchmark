@@ -1,8 +1,9 @@
 ---
-id: child-dataset
-name: CHILD Dataset
-brief-description: Dataset for experiments within the CHILD Pilot
-type: Dataset
+component-id: documentary-evidence-benchmark
+name: Documentary evidence benchmark
+brief-description: the benchmark for the extraction of documentary evidence
+type: 
+- Dataset
 release-date: 
 release-number: 
 work-package: 
