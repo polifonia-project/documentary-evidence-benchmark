@@ -11,7 +11,7 @@ work-package:
 - WP4
 pilot:
 - CHILD
-licence: 
+licence: CC BY
 related-component:
 - led
 - sparql-anything
