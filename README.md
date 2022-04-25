@@ -4,8 +4,8 @@ name: Documentary evidence benchmark
 brief-description: the benchmark for the extraction of documentary evidence
 type: 
 - Dataset
-release-date: 
-release-number: 
+release-date: 25/04/2022
+release-number: v1.0
 work-package: 
 - WP1
 - WP4
