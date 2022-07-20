@@ -11,12 +11,10 @@ work-package:
 - WP4
 pilot:
 - CHILD
-licence: CC BY
+licence: Apache 2.0
 related-component:
 - led
 - sparql-anything
-links:
-- https://github.com/polifonia-project/child-dataset
 credits:
 - https://github.com/enridaga
 ---
