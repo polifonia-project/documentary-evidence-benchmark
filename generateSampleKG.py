@@ -26,7 +26,7 @@ def main():
 
                 print(f"Counter: {counter}\n")
                 print(f"Experience URI: {uri}\n")
-                output_file.write(f"Response:\n{response}\n\n")
+                output_file.write(f"{response}\n")
 
 def make_http_request(url, query, headers):
     try:
