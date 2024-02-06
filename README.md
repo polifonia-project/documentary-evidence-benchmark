@@ -1,7 +1,7 @@
 ---
 component-id: documentary-evidence-benchmark
 name: Documentary evidence benchmark
-brief-description: the benchmark for the extraction of documentary evidence
+description: "A benchmark for the extraction of documentary evidence, taking the Listening Experience Database (LED) as a reference."
 type: Dataset
 release-date: 25/04/2022
 release-number: v1.0
@@ -13,7 +13,7 @@ pilot:
 licence:
 - Apache-2.0
 doi: 10.5281/zenodo.6866982
-related-component:
+related-components:
 - derived-from:
   - led
 - generated-by:
