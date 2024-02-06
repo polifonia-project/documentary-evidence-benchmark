@@ -14,10 +14,8 @@ licence:
 - Apache-2.0
 doi: 10.5281/zenodo.6866982
 related-components:
-- derived-from:
-  - led
-- generated-by:
-  - sparql-anything-cli
+- derived-from: led
+- generated-by: sparql-anything-cli
 bibliography:
 - main-report: "Enrico Daga, Alba Morales Tirado, Rocco Tripodi, and Arianna Graciotti. \"D4.3 - Software for Knowledge Extraction from Text\". Polifonia Project deliverable. European Commission grant agreement N. 101004746 (2022)"
 credits:
